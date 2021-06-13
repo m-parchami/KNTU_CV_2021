@@ -52,6 +52,7 @@ while True:
     count, classes, stats, _ = cv2.connectedComponentsWithStats(morphed, connectivity=8)
 
     final = np.zeros(frame.shape, dtype=frame.dtype) 
+    points = []
     for k in range (count):
         if k == 0: continue
         
@@ -60,25 +61,41 @@ while True:
             continue
         bottom_center = (left + width//2, top + height)
     
-        frame = cv2.rectangle(frame, (left, top), (left+width, top+height), (0,0,255), 1)
-        frame = cv2.circle(frame, bottom_center, color=(0,255,0), radius = 4, thickness=2)
+        # frame = cv2.rectangle(frame, (left, top), (left+width, top+height), (0,0,255), 1)
+        # frame = cv2.circle(frame, bottom_center, color=(0,0,255), radius = 4, thickness=5)
+        points.append(bottom_center)
 
         final[classes == k] = (0, 0, 255); # create filtered binary image
         
     
-    # frame_show = cv2.resize(frame, (int(frame.shape[1]//1.5), int(frame.shape[0]//1.5)))
+    frame_show = cv2.resize(frame, (int(frame.shape[1]//2), int(frame.shape[0]//2)))
     # fgmask_show = cv2.resize(fgmask, (fgmask.shape[1]//2, fgmask.shape[0]//2))
     # final_show = cv2.resize(final, (final.shape[1]//2, final.shape[0]//2))
-    # cv2.imshow('Frame', frame_show)
+    cv2.imshow('Frame', frame_show)
     # cv2.imshow('Mask',fgmask_show)
     # cv2.imshow("Connected", final_show)
-    # k = cv2.waitKey(1) & 0xff
-    # if k == ord('q'):
-    #     break
 
-    out_bbox.write(frame)
-    out_binary.write(fgmask)
-    out_connected.write(final)
+
+    # out_bbox.write(frame)
+    # out_binary.write(fgmask)
+    # out_connected.write(final)
     
+    projected = np.asarray([[33, 28], [105, 0], [177, 28], [105, 136]], dtype = np.float32)
+    im = np.asarray([[142, 170], [640, 110], [1136, 116], [872, 780]], dtype= np.float32)
+    h = cv2.getPerspectiveTransform(im, projected)
+    warped = cv2.warpPerspective(frame, h, (210, 136))
+
+    if len(points) != 0:
+        points = np.float32(points).reshape(-1, 1, 2)
+        projected_points = cv2.perspectiveTransform(points, h).reshape(-1, 2)
+        for p in projected_points:
+            warped = cv2.circle(warped, (int(p[0]), int(p[1])), color=(0,0,255), radius = 1, thickness=2)
+
+    cv2.imshow("Warped", cv2.resize(warped, (warped.shape[1]*4, warped.shape[0]*4)))
+    k = cv2.waitKey(1)
+    if k == ord('q'):
+        break
+
 cap.release()
 cv2.destroyAllWindows()
+
