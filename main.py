@@ -29,6 +29,7 @@ def morphology(fgmask):
 
 cap = cv2.VideoCapture('output.mp4')
 
+
 w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -42,6 +43,16 @@ min_area_threshold = 30 #pixels
 min_width_threshold = 10 #pixels
 min_height_threshold = 20 #pixels
 min_height_to_width = 1.4
+
+
+projected = np.asarray([[33, 28], [105, 0], [177, 28], [105, 136]], dtype = np.float32)
+im = np.asarray([[142, 170], [640, 110], [1136, 116], [872, 780]], dtype= np.float32)
+h = cv2.getPerspectiveTransform(im, projected)
+out_size = (210, 136)
+
+field_image = cv2.imread("2D_field.png")
+field_image_clean = cv2.resize(field_image, out_size)
+field_image = field_image_clean.copy()
 
 while True:
     ok, frame = cap.read()
@@ -80,21 +91,25 @@ while True:
     # out_binary.write(fgmask)
     # out_connected.write(final)
     
-    projected = np.asarray([[33, 28], [105, 0], [177, 28], [105, 136]], dtype = np.float32)
-    im = np.asarray([[142, 170], [640, 110], [1136, 116], [872, 780]], dtype= np.float32)
-    h = cv2.getPerspectiveTransform(im, projected)
-    warped = cv2.warpPerspective(frame, h, (210, 136))
+
+    warped = cv2.warpPerspective(frame, h, out_size)
 
     if len(points) != 0:
         points = np.float32(points).reshape(-1, 1, 2)
         projected_points = cv2.perspectiveTransform(points, h).reshape(-1, 2)
         for p in projected_points:
             warped = cv2.circle(warped, (int(p[0]), int(p[1])), color=(0,0,255), radius = 1, thickness=2)
+            field_image = cv2.circle(field_image, (int(p[0]), int(p[1])), color=(0,0,255), radius = 1, thickness=2)
 
     cv2.imshow("Warped", cv2.resize(warped, (warped.shape[1]*4, warped.shape[0]*4)))
+    cv2.imshow("2D Map", cv2.resize(field_image, (field_image.shape[1]*4, field_image.shape[0]*4)))
     k = cv2.waitKey(1)
+    if k == ord('p'):
+        input()
     if k == ord('q'):
         break
+
+    field_image = field_image_clean.copy()
 
 cap.release()
 cv2.destroyAllWindows()
