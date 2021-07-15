@@ -8,7 +8,7 @@ In this project, many students worked with background subtraction, morphological
 
 The full project description can be found in the PDF file on this repo. In addition, there is a basic implementation of the part 1 (player detection) in Python. The code was just a quick and simple implementation for me to test whether the goal can be achieved by students. 
 
-
+Full implementation can be accessed from the sample implementations at the end of this document.
 ## Part 1
 
 Given an input video of a soccer match from a static angle, students are asked to provide a 2D map of the field (bird's eye view). Therefore, they should implement a fairly accurate detection method, and then use perspective transform to project the positions on a 2D map. Another approach is to first warp the image with perspective transform, and then apply a detection method.
@@ -22,9 +22,9 @@ Here, the students are asked to use Convolutional Neural Networks to classify th
 ## Part 3-Extra Points
 
 We also offered multiple extra tasks for enthusiasts.
-1- In addition to the players, classify the referee as well. 
-2- Instead of running the detection method for every frame, run it in intervals and use object tracking methods for the intermediate frames.
-3- Instead of a single angle, apply detection for all three angles of the field and gennerate a full 2D map, in which every player can be observed.
+1. In addition to the players, classify the referee as well. 
+2. Instead of running the detection method for every frame, run it in intervals and use object tracking methods for the intermediate frames.
+3. Instead of a single angle, apply detection for all three angles of the field and gennerate a full 2D map, in which every player can be observed.
 
 ## Sample Implementations
 
