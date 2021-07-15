@@ -34,3 +34,4 @@ Here are some of the best projects presented by the students:
 
 2- [itsAliSali/soccerField](https://github.com/itsAliSali/soccerField) : Ali came up with a novel method handle the variant size of the near and distant players. His detection results was among the most accurate ones.
 
+3- [shamohamin/football_player_tracking](https://github.com/shamohamin/football_player_tracking) : Amin and Ghazal's detection and classification were among the best.
