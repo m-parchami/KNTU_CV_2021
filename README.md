@@ -1,10 +1,13 @@
 # KNTU_CV_2021
 
-This project was designed for the "Fundamentals of Computer Vision" course held at K. N. Toosi University of Technology in Spring 2021.
+This project was designed for the "Fundamentals of Computer Vision" course held at K. N. Toosi University of Technology in Spring 2021. You can access the course website [here](https://wp.kntu.ac.ir/nasihatkon/teaching/cvug/s2021/).
 
-The purpose of this project was to allow students to use classic image processing and computer vision methods together with deep learning to achieve an acceptable result in the given task.
+The purpose of this project was to allow students to use classic image processing and computer vision methods together with deep learning to achieve an acceptable result in the given task. 
 
-The full description of the project can be found in the enclosed PDF file. In addition, there is a basic implementation of the part 1 (player detection) in Python. The code was just a quick implementation for me, to test whether the goal can be achieved by students. 
+In this project, many students worked with background subtraction, morphological operations, perspective transformation, dataset tools such as [labelImg](https://github.com/tzutalin/labelImg), convolution neural networks' training and testing, and the Google Colaboratory environment for training their model.
+
+The full project description can be found in the PDF file on this repo. In addition, there is a basic implementation of the part 1 (player detection) in Python. The code was just a quick and simple implementation for me to test whether the goal can be achieved by students. 
+
 
 ## Part 1
 
