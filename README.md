@@ -30,7 +30,7 @@ We also offered multiple extra tasks for enthusiasts.
 
 Here are some of the best projects presented by the students:
 
-1- [TroddenSpade/Soccer-Players-Tracking](https://github.com/TroddenSpade/Soccer-Players-Tracking) Parsa and Hashem had one of the most elaborate project. Not only did they get full mark from the project, but they also implemented every bonus point.
+1- [TroddenSpade/Soccer-Players-Tracking](https://github.com/TroddenSpade/Soccer-Players-Tracking) Parsa and Hashem had one of the most elaborate projects. Not only did they get full mark from the project, but they also implemented every bonus point.
 
 2- [itsAliSali/soccerField](https://github.com/itsAliSali/soccerField) : Ali came up with a novel method handle to the variant size of the near and distant players. His detection results were among the most accurate ones.
 
