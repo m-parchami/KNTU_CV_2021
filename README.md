@@ -1,5 +1,7 @@
 # KNTU_CV_2021
 
+<img src="input_sample.png" width="400"> <img src="output_sample.png" width="400">
+
 This project was designed for the "Fundamentals of Computer Vision" course held at K. N. Toosi University of Technology in Spring 2021. You can access the course website [here](https://wp.kntu.ac.ir/nasihatkon/teaching/cvug/s2021/).
 
 The purpose of this project was to allow students to use classic image processing and computer vision methods together with deep learning to achieve an acceptable results in the given task. 
